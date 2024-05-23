@@ -3,12 +3,15 @@ import Hello from "./Components/Hello";
 
 // component: App
 const App = () => {
+
+const name = 'KARAN!'
+
   return (
     <div>
       <h1>App Component</h1>
-      <Hello />    
-      <Hello />
-      <Hello />
+      <Hello 
+        name={name}  
+      />    
     </div>
   )
 }

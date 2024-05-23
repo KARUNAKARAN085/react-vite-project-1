@@ -1,8 +1,8 @@
 // component: Hello
-const Hello = () => {
+const Hello = (props) => {
     return (
         <div>
-            <p>Hello, world!-Hello Component</p>
+            <p>Hello {props.name} - Hello Component</p>
         </div>
     )
   }
