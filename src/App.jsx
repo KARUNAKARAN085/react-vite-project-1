@@ -1,22 +1,32 @@
-const App = () => {
+function App() {
 
-  const friends =[
-    { id:1,name:"john",age:10},
-    { id:2,name:"kaaa",age:20}
-  ]
+  const islogedin = true;
 
+  //normal way
+  // if(islogedin){
+  //   return <h1>Welcome Back</h1>
+  // }else{
+  //   return <h1>Please login!</h1>
+  // }
+
+
+  // easy way
   return (
     <div>
-      <h1>Friends</h1>
-      <ul>
-        {
-        friends.map((friend) =>
-          <li key={friend.id}>{friend.name} {friend.age}</li>
-        )
+      {
+        islogedin ? <h1>Welcome Back!</h1> : <h1>Please login!</h1>
       }
-      </ul>
     </div>
   )
+
+
+  // && way
+  // return (
+  //   <div>
+  //     {islogedin && <h1>Welcome Back!</h1>}
+  //     {!islogedin && <h1>Please login!</h1>}
+  //   </div>
+  // )
 }
 
 export default App
