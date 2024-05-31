@@ -1,19 +1,23 @@
-import { useContext, useEffect } from "react";
-import { Namecontext } from "../App";
+import { useEffect } from "react";
+import { useName } from "../contexts/NameContext";
 
-const D = ({children}) => {
-    const { name, setName } = useContext(Namecontext)
+const D = () => {
+    const { name, setName } = useName()
   
-    useEffect(() =>{
-      setTimeout(() => {
-        setName("karan")
-      }, 3000);
-    })
+    // useEffect(() =>{
+    //   setTimeout(() => {
+    //     setName("karan")
+    //   }, 3000);
+    // })
   
     return (
         <div>
-            <h1>Hello {name}!</h1>
-        {children}
+            <h1>Hello, {name}!</h1>
+            <input type="text" value={name} onChange={
+                (e) => {
+                    setName(e.target.value)
+                }
+            }/>
         </div>
     )
   }
