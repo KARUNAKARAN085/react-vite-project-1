@@ -1,30 +1,27 @@
 import { useState } from "react";
+import { Link, useLoaderData } from "react-router-dom";
+import noteServices from "../services/noteServices";
+
+
+export const loader = async () => {
+    const notes = await noteServices.getNotes();
+    return notes;
+  }
 
 const Home = () => {
 
-  const [notes, setNotes] = useState([
-    {
-      id: 1,
-      title: "First Note",
-      content: "This is the first note"
-    },
-    {
-      id: 2,
-      title: "Second Note",
-      content: "This is the second note",
-    },
-  ])
+  const notes = useLoaderData();
 
   return (
     <div>
       <h1>Notes</h1>
-      <ul>
-        {notes.map(note => (
-          <li key={note.id}>
-            <a href={`/${note.id}`}>{note.title}</a>
+      <ol>
+      {notes.map(note => (
+          <li key={note.id} className="m-2">
+            <Link className="list-inline-item" to={`/notes/${note.id}`}>{note.name}</Link>
           </li>
         ))}
-      </ul>
+      </ol>
     </div>
   )
 }
