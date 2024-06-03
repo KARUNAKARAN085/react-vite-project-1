@@ -6,7 +6,7 @@ const App = () => {
   const handleClick = () => {
     inputRef.current.focus()
   };
-
+  console.log("rerendering")
   return (
     <>
       <input type="text" ref={inputRef} placeholder="input 1"/><br /><br />
