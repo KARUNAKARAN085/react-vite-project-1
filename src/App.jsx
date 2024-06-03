@@ -3,23 +3,25 @@ import { useRef } from "react";
 
 const App = () => {
   const [state,setState] = useState(0)
-  const inputRef = useRef(null);
+  const countRef = useRef(0);
 
-  const handleClick = () => {
-    inputRef.current.focus()
+  const handleRefIncrement = () => {
+    countRef.current += 1;
+    console.log(countRef.current)
   };
-  const handleChange = () => {
-    inputRef.current.value="hello world";
-    setState(state+1);
+  const handleStateIncrement = () => {
+    return(
+      setState(state + 1)
+    )
   };
 
   console.log("rerendering")
   return (
     <>
-      <input type="text" ref={inputRef} placeholder="input 1"/><br /><br />
-      <input type="text" placeholder="input 2"/><br /><br />
-      <button onClick={handleClick}>Focus input 1</button>
-      <button onClick={handleChange}>Change Value</button>
+      <h1>State count: {state}</h1>
+      <h1>Ref count: {countRef.current}</h1>
+      <button onClick={handleRefIncrement}>Increment Ref Count</button><br /><br />
+      <button onClick={handleStateIncrement}>Increment State Count</button>
     </>
   );
 };
