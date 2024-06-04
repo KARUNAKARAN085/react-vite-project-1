@@ -12,10 +12,10 @@ const Counter2 = () => {
     dispatch({type: "DECREMENT"})
   };
   return (
-    <div>
+    <div className='m-5'>
       <h1>Count: { state.count }</h1>
-      <button onClick={handleIncrement}>Increment</button><br /><br />
-      <button onClick={handleDecrement}>Decrement</button>
+      <button className='btn btn-primary' onClick={handleIncrement}>Increment</button><br /><br />
+      <button className='btn btn-danger' onClick={handleDecrement}>Decrement</button>
     </div>
   )
 }
