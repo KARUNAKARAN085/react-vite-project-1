@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useLoaderData } from "react-router-dom";
+import TodoItem from "../components/TodoItem";
+import { useState } from "react";
 
 //define a loader function
 export const loader = async () => {
@@ -8,27 +10,31 @@ export const loader = async () => {
     "https://665eb2bf1e9017dc16f0f58f.mockapi.io/todos"
   );
   //return the data
-  return todos.data;
+  return {todos: todos.data};
 };
 
 const Todos = () => {
   // use the data using the useloader hook
-  const todos = useLoaderData();
+  const {todos: initialTodos} = useLoaderData();
+  const [todos, setTodos] = useState(initialTodos);
 
-  console.log(todos);
+  const handleUpdateTodo = (updatedTodo) => {
+    //update the todo in the state
+    setTodos(todos.map(todo => (todo.id === updatedTodo.id ? updatedTodo : todo)))
+  }
 
   return (
     <>
       <h1>Todos list</h1>
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>
-            <strong>{todo.title}</strong>
-            <br />
-            <em>{todo.description}</em>
-          </li>
-        ))}
-      </ul>
+        {
+            todos.map((todo) => (
+              <TodoItem
+                key={todo.id}
+                todo={todo}
+                onUpdateTodo={handleUpdateTodo}
+              />
+            ))
+        }
     </>
   );
 };
